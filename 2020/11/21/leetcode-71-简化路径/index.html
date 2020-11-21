@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="71 路径总和示例示例 1： 输入：”&#x2F;home&#x2F;“输出：”&#x2F;home”解释：注意，最后一个目录名后面没有斜杠。示例 2： 输入：”&#x2F;..&#x2F;“输出：”&#x2F;“解释：从根目录向上一级是不可行的，因为根是你可以到达的最高级。示例 3： 输入：”&#x2F;home&#x2F;&#x2F;foo&#x2F;“输出：”&#x2F;home&#x2F;foo”解释：在规范路径中，多个连续斜杠需要用一个斜杠替换。示例 4： 输入：”&#x2F;a&#x2F;.&#x2F;b&#x2F;..&#x2F;..&#x2F;c&#x2F;“输出：”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-71-简化路径">
+<meta property="og:url" content="http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/index.html">
+<meta property="og:site_name" content="herrycodelee blog">
+<meta property="og:description" content="71 路径总和示例示例 1： 输入：”&#x2F;home&#x2F;“输出：”&#x2F;home”解释：注意，最后一个目录名后面没有斜杠。示例 2： 输入：”&#x2F;..&#x2F;“输出：”&#x2F;“解释：从根目录向上一级是不可行的，因为根是你可以到达的最高级。示例 3： 输入：”&#x2F;home&#x2F;&#x2F;foo&#x2F;“输出：”&#x2F;home&#x2F;foo”解释：在规范路径中，多个连续斜杠需要用一个斜杠替换。示例 4： 输入：”&#x2F;a&#x2F;.&#x2F;b&#x2F;..&#x2F;..&#x2F;c&#x2F;“输出：”">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-21T22:57:38.000Z">
+<meta property="article:modified_time" content="2020-11-21T15:05:48.170Z">
+<meta property="article:author" content="Xiang Li">
+<meta property="article:tag" content="leetcode">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>leetcode-71-简化路径</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/11/21/hello-world/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&text=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&is_video=false&description=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetcode-71-简化路径&body=Check out this article: http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&name=leetcode-71-简化路径&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&t=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#71-路径总和"><span class="toc-number">1.</span> <span class="toc-text">71 路径总和</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">1.1.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题分析"><span class="toc-number">1.2.</span> <span class="toc-text">问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Round-One"><span class="toc-number">1.2.1.</span> <span class="toc-text">Round One</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Round-Two"><span class="toc-number">1.2.2.</span> <span class="toc-text">Round Two</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">1.3.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        leetcode-71-简化路径
+    </h1>
+
+
+
+    <div class="meta">
+      <span
+        class="author"
+        itemprop="author"
+        itemscope
+        itemtype="http://schema.org/Person"
+      >
+        <span itemprop="name"
+          >herrycodelee blog</span
+        >
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-21T22:57:38.000Z" itemprop="datePublished">2020-11-21</time>
+        
+      
+    </div>
+
+ 
+ 
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/leetcode/" rel="tag">leetcode</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="71-路径总和"><a href="#71-路径总和" class="headerlink" title="71 路径总和"></a>71 路径总和</h1><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>示例 1：</p>
+<p>输入：”/home/“<br>输出：”/home”<br>解释：注意，最后一个目录名后面没有斜杠。<br>示例 2：</p>
+<p>输入：”/../“<br>输出：”/“<br>解释：从根目录向上一级是不可行的，因为根是你可以到达的最高级。<br>示例 3：</p>
+<p>输入：”/home//foo/“<br>输出：”/home/foo”<br>解释：在规范路径中，多个连续斜杠需要用一个斜杠替换。<br>示例 4：</p>
+<p>输入：”/a/./b/../../c/“<br>输出：”/c”<br>示例 5：</p>
+<p>输入：”/a/../../b/../c//.//“<br>输出：”/c”</p>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><h3 id="Round-One"><a href="#Round-One" class="headerlink" title="Round One"></a>Round One</h3><p>一开始没有头绪，大概想到了依次读取字符串，然后利用栈。比如遇到<code>..</code>就 pop 一个元素。但是没有整理出完整的思路。</p>
+<h3 id="Round-Two"><a href="#Round-Two" class="headerlink" title="Round Two"></a>Round Two</h3><p>不啰嗦，直接看 leetcode 上的 discussion 吧。果然人家的思路清晰又简单。</p>
+<ul>
+<li>使用’/‘将路径字符串分割为路径数组。准备一个栈</li>
+<li>遍历数组<ul>
+<li>遇到 ‘’ 直接 continue(分割了//)</li>
+<li>遇到 ‘.’ 直接 continue(分割了/./)</li>
+<li>遇到’..’ stack.pop() 需要返回上一级</li>
+<li>遇到普通字符串 stack.push() 进入一级</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">simplifyPath</span>(<span class="params">path: <span class="built_in">string</span></span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> arr = path.split(<span class="string">"/"</span>);</span><br><span class="line">  <span class="keyword">const</span> stack: <span class="built_in">string</span>[] = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> str of arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str == <span class="string">""</span>) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str == <span class="string">"."</span>) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str == <span class="string">".."</span>) &#123;</span><br><span class="line">      stack.pop();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      stack.push(str);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`/<span class="subst">$&#123;stack.join(<span class="string">"/"</span>)&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+  <div>
+    <a
+      href="https://github.com/USTCLX/ustclx.github.io/edit/release/source/_posts/leetcode-71-简化路径.md"
+      >edit</a
+    >
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#71-路径总和"><span class="toc-number">1.</span> <span class="toc-text">71 路径总和</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">1.1.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题分析"><span class="toc-number">1.2.</span> <span class="toc-text">问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Round-One"><span class="toc-number">1.2.1.</span> <span class="toc-text">Round One</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Round-Two"><span class="toc-number">1.2.2.</span> <span class="toc-text">Round Two</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">1.3.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&text=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&is_video=false&description=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetcode-71-简化路径&body=Check out this article: http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&title=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&name=leetcode-71-简化路径&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2020/11/21/leetcode-71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/&t=leetcode-71-简化路径" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    Xiang Li
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
