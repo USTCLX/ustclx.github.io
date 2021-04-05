@@ -42,7 +42,7 @@ function usePreProps(props) {
 }
 ```
 
-### useOnScreen
+## useOnScreen
 
 返回组件是否曝光。
 
