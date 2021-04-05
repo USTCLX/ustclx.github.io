@@ -2,7 +2,7 @@
 layout: first
 title: First Post
 date: 2020-07-28 22:34:55
-tags:
+tags: 随笔
 ---
 
 这是我用 Hexo 写的第一篇 blog，之前的 Hello World 真的就是 Hello World 而已。之所以开通这个 blog，是因为在 B 站上看到了一个教学视频，感觉很有意思，总结一下这个 blog 的几个优点。

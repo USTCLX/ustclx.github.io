@@ -1,7 +1,9 @@
 ---
 title: leetcode 208 实现Trie树
 date: 2020-11-15 11:35:35
-tags: leetcode
+tags:
+  - leetcode
+  - 算法与数据结构
 ---
 
 # 208 实现前缀树
