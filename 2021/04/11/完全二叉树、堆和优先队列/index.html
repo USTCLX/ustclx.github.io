@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="完全二叉树完全二叉树是满二叉树的一种退化。它只缺少最后一排最右边的一些元素。如下图所示。  完全二叉树的特性完全二叉树有一个优秀的特性。就是它可以保存在一个数组中，而不需要使用链表的方式来存储。如果对完全二叉树中的节点编号，那么可以总结出一个规律。如果父节点的编号是 i，那么它的左子节点的编号就是 2i，右子节点的编号就是 2i+1  实际上，在计算机中，我们会把数组作为完全二叉树的实际存储结构，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="完全二叉树、堆和优先队列">
+<meta property="og:url" content="http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="herrycodelee blog">
+<meta property="og:description" content="完全二叉树完全二叉树是满二叉树的一种退化。它只缺少最后一排最右边的一些元素。如下图所示。  完全二叉树的特性完全二叉树有一个优秀的特性。就是它可以保存在一个数组中，而不需要使用链表的方式来存储。如果对完全二叉树中的节点编号，那么可以总结出一个规律。如果父节点的编号是 i，那么它的左子节点的编号就是 2i，右子节点的编号就是 2i+1  实际上，在计算机中，我们会把数组作为完全二叉树的实际存储结构，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2021/04/11/assets/images/bianary-tree.png">
+<meta property="article:published_time" content="2021-04-11T14:10:04.000Z">
+<meta property="article:modified_time" content="2021-04-11T06:23:42.007Z">
+<meta property="article:author" content="Xiang Li">
+<meta property="article:tag" content="blog web leetcode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/04/11/assets/images/bianary-tree.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>完全二叉树、堆和优先队列</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2021/04/10/Express-Koa-Redux%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&text=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&is_video=false&description=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=完全二叉树、堆和优先队列&body=Check out this article: http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&name=完全二叉树、堆和优先队列&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&t=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#完全二叉树"><span class="toc-number">1.</span> <span class="toc-text">完全二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#完全二叉树的特性"><span class="toc-number">1.1.</span> <span class="toc-text">完全二叉树的特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆"><span class="toc-number">2.</span> <span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的结构定义"><span class="toc-number">2.1.</span> <span class="toc-text">堆的结构定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的结构操作"><span class="toc-number">2.2.</span> <span class="toc-text">堆的结构操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆排序"><span class="toc-number">2.3.</span> <span class="toc-text">堆排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先队列"><span class="toc-number">3.</span> <span class="toc-text">优先队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现一个最-小-大堆"><span class="toc-number">4.</span> <span class="toc-text">实现一个最(小)大堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        完全二叉树、堆和优先队列
+    </h1>
+
+
+
+    <div class="meta">
+      <span
+        class="author"
+        itemprop="author"
+        itemscope
+        itemtype="http://schema.org/Person"
+      >
+        <span itemprop="name"
+          >herrycodelee blog</span
+        >
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-11T14:10:04.000Z" itemprop="datePublished">2021-04-11</time>
+        
+      
+    </div>
+
+ 
+ 
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h2><p>完全二叉树是满二叉树的一种退化。它只缺少最后一排最右边的一些元素。如下图所示。</p>
+<p><img src="../assets/images/bianary-tree.png" alt="image-20210410135049145"></p>
+<h3 id="完全二叉树的特性"><a href="#完全二叉树的特性" class="headerlink" title="完全二叉树的特性"></a>完全二叉树的特性</h3><p>完全二叉树有一个优秀的特性。就是它可以保存在一个数组中，而不需要使用链表的方式来存储。<br>如果对完全二叉树中的节点编号，那么可以总结出一个规律。<br>如果父节点的编号是 i，那么它的左子节点的编号就是 2<em>i，右子节点的编号就是 2</em>i+1</p>
+<blockquote>
+<p>实际上，在计算机中，我们会把数组作为完全二叉树的实际存储结构，而完全二叉树，则是我们重新看待这段数组信息的思维逻辑结构。因此，数据结构最大的价值，就是对我们思维逻辑结构的改造。</p>
+</blockquote>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><blockquote>
+<p>堆（Heap）是一个可以被看成近似完全二叉树的数组。树上的每一个结点对应数组的一个元素。除了最底层外，该树是完全充满的，而且是从左到右填充。—— 来自：《算法导论》</p>
+</blockquote>
+<p>堆其实就是使用完全二叉树实现的一种数据结构。分为大顶堆和小顶堆。</p>
+<ul>
+<li>小顶堆；如果一个完全二叉树的每一个父节点的值都小于其子节点的值，那么就是一个小顶堆。</li>
+<li>大顶堆；如果一个完全二叉树的每一个父节点的值都大于其子节点的值，那么就是一个大顶堆。</li>
+</ul>
+<blockquote>
+<p>为了让你更好地学习堆这种数据结构，我要和你分享一个学习数据结构的公式：数据结构 = 结构定义 + 结构操作。结构定义和结构操作是组成数据结构最重要的两个部分，也是你之后在学任何一种数据结构时的重点内容。结构定义就是定义一种性质，结构操作就是维护这种性质。</p>
+</blockquote>
+<h3 id="堆的结构定义"><a href="#堆的结构定义" class="headerlink" title="堆的结构定义"></a>堆的结构定义</h3><ul>
+<li>大顶堆可以维护一个集合中的最大值。</li>
+<li>小顶堆可以维护一个集合中的最小值。</li>
+</ul>
+<h3 id="堆的结构操作"><a href="#堆的结构操作" class="headerlink" title="堆的结构操作"></a>堆的结构操作</h3><ul>
+<li>插入新元素<ul>
+<li>插入到最后面（数组的最后）</li>
+<li>向上调整，维护堆的特性</li>
+</ul>
+</li>
+<li>删除最值元素<ul>
+<li>将最后一个元素覆盖堆顶元素（数组尾元素覆盖数组头元素）</li>
+<li>向下调整，维护堆的特性</li>
+</ul>
+</li>
+</ul>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><ol>
+<li>对数组建立一个大顶堆</li>
+<li>每次将堆顶元素和堆尾元素调换位置（相当于把最大值放在了最后），然后减小堆的 size，从上到下维护堆</li>
+<li>执行 n 次之后，得到一个从小到达排序的数组</li>
+</ol>
+<h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><blockquote>
+<p>优先队列好像就是堆的别名啊？其实不然。你可以把优先队列当成是一种概念，那它的定义就是一种可以实现根据优先级出队的结构。而堆只是实现优先队列的其中一种方式，当然也是最普遍的方式。</p>
+</blockquote>
+<h2 id="实现一个最-小-大堆"><a href="#实现一个最-小-大堆" class="headerlink" title="实现一个最(小)大堆"></a>实现一个最(小)大堆</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> Heap&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">protected</span> heap: T[] = [];</span><br><span class="line">  <span class="keyword">protected</span> getNumberForCompare: <span class="function">(<span class="params">val: T</span>) =&gt;</span> <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">abstract</span> compare(indexA: <span class="built_in">number</span>, indexB: <span class="built_in">number</span>): <span class="built_in">boolean</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">getNumberForCompare: (val: T) =&gt; <span class="built_in">number</span>, values: T[] = []</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.getNumberForCompare = getNumberForCompare;</span><br><span class="line">    <span class="keyword">this</span>.heapify(values);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 交换堆内元素</span></span><br><span class="line">  <span class="keyword">protected</span> swap(indexA: <span class="built_in">number</span>, indexB: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> temp = <span class="keyword">this</span>.heap[indexA];</span><br><span class="line">    <span class="keyword">this</span>.heap[indexA] = <span class="keyword">this</span>.heap[indexB];</span><br><span class="line">    <span class="keyword">this</span>.heap[indexB] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 获取左孩子的索引</span></span><br><span class="line">  <span class="keyword">protected</span> getLeftChildIndex(index: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * index + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 获取右孩子的索引</span></span><br><span class="line">  <span class="keyword">protected</span> getRightChildIndex(index: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * index + <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 获取父亲节点的索引</span></span><br><span class="line">  <span class="keyword">protected</span> getParentIndex(index: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (index === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> (index - <span class="number">1</span>) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 初始化建堆</span></span><br><span class="line">  <span class="keyword">protected</span> heapify(values: T[]) &#123;</span><br><span class="line">    <span class="keyword">this</span>.heap = values;</span><br><span class="line">    <span class="comment">// 完全二叉树的叶子节点的个数是总节点个数的一半。</span></span><br><span class="line">    <span class="comment">// 叶子节点本身不需要堆化。只需要等待后面的节点堆化。</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="keyword">this</span>.heap.length &gt;&gt;&gt; <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">      <span class="keyword">this</span>.heapifyDown(i);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 向上维护堆</span></span><br><span class="line">  <span class="keyword">protected</span> heapifyUp(index: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> currentIndex = index;</span><br><span class="line">    <span class="keyword">let</span> parentIndex = <span class="keyword">this</span>.getParentIndex(currentIndex);</span><br><span class="line">    <span class="keyword">while</span> (parentIndex &amp;&amp; <span class="keyword">this</span>.compare(currentIndex, parentIndex)) &#123;</span><br><span class="line">      <span class="keyword">this</span>.swap(currentIndex, parentIndex);</span><br><span class="line">      currentIndex = parentIndex;</span><br><span class="line">      parentIndex = <span class="keyword">this</span>.getParentIndex(parentIndex);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 向下维护堆</span></span><br><span class="line">  <span class="keyword">protected</span> heapifyDown(index: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> currentIndex = index;</span><br><span class="line">    <span class="keyword">let</span> lChildIndex = <span class="keyword">this</span>.getLeftChildIndex(currentIndex);</span><br><span class="line">    <span class="keyword">let</span> rChildIndex = <span class="keyword">this</span>.getRightChildIndex(currentIndex);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> size = <span class="keyword">this</span>.size();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果当前值大于左孩子</span></span><br><span class="line">    <span class="keyword">if</span> (lChildIndex &lt; size &amp;&amp; <span class="keyword">this</span>.compare(lChildIndex, currentIndex)) &#123;</span><br><span class="line">      currentIndex = lChildIndex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果当前值大于右孩子</span></span><br><span class="line">    <span class="keyword">if</span> (rChildIndex &lt; size &amp;&amp; <span class="keyword">this</span>.compare(rChildIndex, currentIndex)) &#123;</span><br><span class="line">      currentIndex = rChildIndex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果当前索引被替换</span></span><br><span class="line">    <span class="keyword">if</span> (currentIndex !== index) &#123;</span><br><span class="line">      <span class="keyword">this</span>.swap(currentIndex, index);</span><br><span class="line">      <span class="keyword">this</span>.heapifyDown(currentIndex);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取堆的大小</span></span><br><span class="line">  size() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.heap.length;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断堆是否为空</span></span><br><span class="line">  isEmpty() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.heap.length === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 插入元素</span></span><br><span class="line">  insert(value: T): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (value != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.heap.push(value);</span><br><span class="line">      <span class="keyword">this</span>.heapifyUp(<span class="keyword">this</span>.heap.length - <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 删除堆顶元素</span></span><br><span class="line">  extract(): T &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty()) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.size() === <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">this</span>.heap.shift();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 交换堆顶和堆尾元素</span></span><br><span class="line">    <span class="keyword">this</span>.swap(<span class="number">0</span>, <span class="keyword">this</span>.heap.length - <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 剔除最小元素</span></span><br><span class="line">    <span class="keyword">const</span> top = <span class="keyword">this</span>.heap.pop();</span><br><span class="line">    <span class="comment">// 重新堆化</span></span><br><span class="line">    <span class="keyword">this</span>.heapifyDown(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> top;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取堆顶元素</span></span><br><span class="line">  top(): T &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.isEmpty() ? <span class="literal">null</span> : <span class="keyword">this</span>.heap[<span class="number">0</span>];</span><br><span class="line">  &#125; <span class="comment">// 获取堆内元素</span></span><br><span class="line"></span><br><span class="line">  values(): T[] &#123;</span><br><span class="line">    <span class="keyword">return</span> [...this.heap];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 小顶堆</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MinHeap&lt;T&gt; <span class="keyword">extends</span> Heap&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">protected</span> compare(indexA: <span class="built_in">number</span>, indexB: <span class="built_in">number</span>): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="keyword">this</span>.getNumberForCompare(<span class="keyword">this</span>.heap[indexA]) &lt;</span><br><span class="line">      <span class="keyword">this</span>.getNumberForCompare(<span class="keyword">this</span>.heap[indexB])</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 大顶堆</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> MaxHeap&lt;T&gt; <span class="keyword">extends</span> Heap&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">protected</span> compare(indexA: <span class="built_in">number</span>, indexB: <span class="built_in">number</span>): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="keyword">this</span>.getNumberForCompare(<span class="keyword">this</span>.heap[indexA]) &gt;</span><br><span class="line">      <span class="keyword">this</span>.getNumberForCompare(<span class="keyword">this</span>.heap[indexB])</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.davideaversa.it/blog/typescript-binary-heap/" target="_blank" rel="noopener">Typescript binary heap</a></li>
+</ul>
+
+  </div>
+  <div>
+    <a
+      href="https://github.com/USTCLX/ustclx.github.io/edit/release/source/_posts/完全二叉树、堆和优先队列.md"
+      >edit</a
+    >
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#完全二叉树"><span class="toc-number">1.</span> <span class="toc-text">完全二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#完全二叉树的特性"><span class="toc-number">1.1.</span> <span class="toc-text">完全二叉树的特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆"><span class="toc-number">2.</span> <span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的结构定义"><span class="toc-number">2.1.</span> <span class="toc-text">堆的结构定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的结构操作"><span class="toc-number">2.2.</span> <span class="toc-text">堆的结构操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆排序"><span class="toc-number">2.3.</span> <span class="toc-text">堆排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先队列"><span class="toc-number">3.</span> <span class="toc-text">优先队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现一个最-小-大堆"><span class="toc-number">4.</span> <span class="toc-text">实现一个最(小)大堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&text=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&is_video=false&description=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=完全二叉树、堆和优先队列&body=Check out this article: http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&title=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&name=完全二叉树、堆和优先队列&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2021/04/11/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%A0%86%E5%92%8C%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/&t=完全二叉树、堆和优先队列" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    Xiang Li
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
