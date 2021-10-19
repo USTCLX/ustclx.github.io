@@ -13,17 +13,17 @@
 <meta property="og:site_name" content="herrycodelee blog">
 <meta property="og:description" content="最近在学习 NestJS 框架，需要使用 MySQL 数据库来配合完成一些功能，以前只使用过 MongoDB，第一次使用 MySQL，在安装和使用时踩了一些坑，记录下来。 下载MySQL 分为商业版和社区版，社区版我理解就是开源免费的。但是在官网想要找到下载入口比较费劲，个人感觉不是清晰。下载社区版可以直接使用下面这个链接。MySQL Community Download 安装下载完成后，直接双击">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2021/10/19/assets/images/mysql_install.png">
-<meta property="og:image" content="http://yoursite.com/2021/10/19/assets/images/mysql_perference_1.png">
-<meta property="og:image" content="http://yoursite.com/2021/10/19/assets/images/mysql_perference_2.png">
-<meta property="og:image" content="http://yoursite.com/2021/10/source/assets/images/sequel_pro_1.png">
-<meta property="og:image" content="http://yoursite.com/2021/10/source/assets/images/sequel_pro_2.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_install.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_perference_1.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_perference_2.png">
+<meta property="og:image" content="http://yoursite.com/images/sequel_pro_1.png">
+<meta property="og:image" content="http://yoursite.com/images/sequel_pro_2.png">
 <meta property="article:published_time" content="2021-10-19T11:05:29.000Z">
-<meta property="article:modified_time" content="2021-10-19T03:35:51.036Z">
+<meta property="article:modified_time" content="2021-10-19T04:04:37.590Z">
 <meta property="article:author" content="Xiang Li">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2021/10/19/assets/images/mysql_install.png">
+<meta name="twitter:image" content="http://yoursite.com/images/mysql_install.png">
     
     
         
@@ -164,18 +164,18 @@
     <p>最近在学习 NestJS 框架，需要使用 MySQL 数据库来配合完成一些功能，以前只使用过 MongoDB，第一次使用 MySQL，在安装和使用时踩了一些坑，记录下来。</p>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>MySQL 分为商业版和社区版，社区版我理解就是开源免费的。但是在官网想要找到下载入口比较费劲，个人感觉不是清晰。下载社区版可以直接使用下面这个链接。<br><a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">MySQL Community Download</a></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>下载完成后，直接双击 dmg 文件进行安装。安装过程中需要输入输入 root 的密码，这里需要记下来。后面链接数据库的时候需要使用。</p>
-<p><img src="../assets/images/mysql_install.png" alt="mysql_install"></p>
+<p><img src="/images/mysql_install.png" alt="mysql_install"></p>
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>为了启动 MySQL 我走了不少弯路，一开始使用命令行来启动，结果很麻烦，也没有成功启动。后来发现其实 MySQL 很人性化，它会在 System Perference 里面生成一个图标，点击图标后就可进行一些基本操作，包括</p>
 <ul>
 <li>start</li>
 <li>stop</li>
 <li>initialize</li>
 </ul>
-<p><img src="../assets/images/mysql_perference_1.png" alt="mysql_perference_1"><br><img src="../assets/images/mysql_perference_2.png" alt="mysql_perference_2"></p>
+<p><img src="/images/mysql_perference_1.png" alt="mysql_perference_1"><br><img src="/images/mysql_perference_2.png" alt="mysql_perference_2"></p>
 <h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>建议直接使用图形化界面来操作，使用命令行太麻烦了。图形化界面有两个选择一个是收费的<code>Navicat</code>，一个是开源免费的<code>Sequel Pro</code>。<br>笔者一开始试用过<code>Navicat</code>，确实非常好用，鉴于平时需求不是很大，所以暂时没有打算付费使用。于是选择了<code>Sequel Pro</code>。</p>
 <p>在使用<code>Sequel Pro</code>的过程中遇到了一些问题。最开始下载的是<code>v1.1.2</code>正式版，但是使用过程中无法连接数据库，还总是闪退。尝试重装也没有解决。搜索后发现很多人都遇到了这个问题。解决方案是下载<code>test build</code>版本。可以完美解决。</p>
 <p>下载地址: <a href="https://sequelpro.com/test-builds" target="_blank" rel="noopener">Sequel Pro test build</a></p>
-<p><img src="../../source/assets/images/sequel_pro_1.png" alt="sequel_pro_1"><br><img src="../../source/assets/images/sequel_pro_2.png" alt="sequel_pro_2"></p>
+<p><img src="/images/sequel_pro_1.png" alt="sequel_pro_1"><br><img src="/images/sequel_pro_2.png" alt="sequel_pro_2"></p>
 <p>如此依赖就可以快乐的使用 MySQL 数据库了。</p>
 
   </div>
