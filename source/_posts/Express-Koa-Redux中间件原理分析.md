@@ -141,7 +141,7 @@ proto.use = function use(fn) {
 ```
 
 上面 router 的代码，就是最终实现了 `app.use` 方法保存中间件函数的逻辑。如果断点调试，会发现一个有趣的事实，就是在我们的 `middlewareA` 中间件之前，express 已经加入了两个默认的 layer。如下图
-![image-20210410135049145](../assets/images/image-20210410135049145.png)
+![image-20210410135049145](/images/image-20210410135049145.png)
 
 下面再来看下程序运行并收到请求后的执行流程。首先是 `app.listen`，通过 http.createServer 构造了一个 server 实例，实例的回调函数，就是 app 本身，这种写法也是非常骚了，把一个 app 函数玩弄于股掌之间。
 

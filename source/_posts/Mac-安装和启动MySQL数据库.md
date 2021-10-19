@@ -1,7 +1,8 @@
 ---
 title: Mac 安装和启动MySQL数据库
 date: 2021-10-19 11:05:29
-tags: MySQL
+tags:
+  - MySQL
 ---
 
 最近在学习 NestJS 框架，需要使用 MySQL 数据库来配合完成一些功能，以前只使用过 MongoDB，第一次使用 MySQL，在安装和使用时踩了一些坑，记录下来。
@@ -15,7 +16,7 @@ MySQL 分为商业版和社区版，社区版我理解就是开源免费的。�
 
 下载完成后，直接双击 dmg 文件进行安装。安装过程中需要输入输入 root 的密码，这里需要记下来。后面链接数据库的时候需要使用。
 
-![mysql_install](../assets/images/mysql_install.png)
+![mysql_install](/images/mysql_install.png)
 
 ## 启动
 
@@ -25,8 +26,8 @@ MySQL 分为商业版和社区版，社区版我理解就是开源免费的。�
 - stop
 - initialize
 
-![mysql_perference_1](../assets/images/mysql_perference_1.png)
-![mysql_perference_2](../assets/images/mysql_perference_2.png)
+![mysql_perference_1](/images/mysql_perference_1.png)
+![mysql_perference_2](/images/mysql_perference_2.png)
 
 ## 连接数据库
 
@@ -37,7 +38,7 @@ MySQL 分为商业版和社区版，社区版我理解就是开源免费的。�
 
 下载地址: [Sequel Pro test build](https://sequelpro.com/test-builds)
 
-![sequel_pro_1](../../source/assets/images/sequel_pro_1.png)
-![sequel_pro_2](../../source/assets/images/sequel_pro_2.png)
+![sequel_pro_1](/images/sequel_pro_1.png)
+![sequel_pro_2](/images/sequel_pro_2.png)
 
 如此依赖就可以快乐的使用 MySQL 数据库了。
