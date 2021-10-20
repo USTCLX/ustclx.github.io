@@ -2,7 +2,7 @@
 title: Mac 安装和启动MySQL数据库
 date: 2021-10-19 11:05:29
 tags:
-  - MySQL
+  - mysql
 ---
 
 最近在学习 NestJS 框架，需要使用 MySQL 数据库来配合完成一些功能，以前只使用过 MongoDB，第一次使用 MySQL，在安装和使用时踩了一些坑，记录下来。

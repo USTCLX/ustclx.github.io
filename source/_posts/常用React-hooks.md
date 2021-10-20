@@ -2,8 +2,7 @@
 title: 常用React hooks
 date: 2021-04-05 21:32:11
 tags:
-  - React
-  - Web开发
+  - react
 ---
 
 React hooks 已经很普及了。记录和整理一些比较通用的 hook。
