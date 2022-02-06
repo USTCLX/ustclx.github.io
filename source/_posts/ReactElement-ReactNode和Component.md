@@ -1,5 +1,5 @@
 ---
-title: ReactNode ReactElement ReactNode和Component
+title: 浅谈ReactNode ReactElement 和Component
 date: 2022-02-06 11:18:45
 tags:
   - react

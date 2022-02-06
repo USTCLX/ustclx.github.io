@@ -5,8 +5,6 @@ tags:
   - javascript
 ---
 
-# 精读《Airbnb JavaScript Style Guide》
-
 ## Array
 
 - To convert an iterable object to an array, use spreads ... instead of Array.from.

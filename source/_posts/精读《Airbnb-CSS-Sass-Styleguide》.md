@@ -7,8 +7,6 @@ tags:
   - style guide
 ---
 
-# 精读《Airbnb CSS / Sass Styleguide》
-
 ## Formatting
 
 - Prefer dashes over camelCasing in class names.
